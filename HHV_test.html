@@ -61,20 +61,19 @@
   /* --- ส่วนที่เพิ่มใหม่: Calculation Layout --- */
   .calculation-container {
     display: flex;
-    align-items: center; /* จัดให้อยู่กึ่งกลางแนวตั้ง */
-    justify-content: center; /* จัดให้อยู่กึ่งกลางแนวนอน */
-    gap: 50px; /* ระยะห่างระหว่างก้อนซ้าย กลาง ขวา */
-    margin-top: 40px;
+    flex-direction: column;   /* แนวตั้ง */
+    align-items: center;      /* กลางแนวนอน */
+    justify-content: center;
+    gap: 30px;
     flex-wrap: wrap; /* รองรับมือถือ (ปัดตกบรรทัด) */
   }
 
-  /* คอลัมน์ซ้าย: Input Fields */
+  /* Input */
   .input-col {
+    width: 320px;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 320px;
-    text-align: left;
   }
   .input-group label {
     display: block;
@@ -98,25 +97,12 @@
     box-shadow: 0 0 0 2px #d1e3f8;
   }
 
-  /* คอลัมน์กลาง: รูปภาพลูกศร */
-  .process-col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  /* รูปภาพตรงกลาง (ถ้ามีไฟล์รูป ให้แก้ src เป็น path รูปของคุณ) */
-  .process-img {
-    height: 120px; /* ปรับขนาดตามต้องการ */
-    width: auto;
-    object-fit: contain;
+
+  /* Output */
+  .output-col {
+   width: 320px;
   }
 
-  /* คอลัมน์ขวา: Output */
-  .output-col {
-    width: 320px;
-    text-align: left;
-  }
   .output-box {
     width: 100%;
     height: 100px; /* ความสูงของกล่องผลลัพธ์ */
@@ -165,10 +151,23 @@
       flex-direction: column;
       gap: 30px;
     }
-    .process-img {
-      transform: rotate(90deg); /* หมุนลูกศรลงถ้าเป็นมือถือ */
-      margin: 10px 0;
-    }
+.arrow {
+  width: 4px;
+  height: 50px;
+  background-color: #003366;
+  position: relative;
+}
+
+.arrow::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 14px solid #003366;
+}
   }
 </style>
 </head>
@@ -217,8 +216,8 @@
       </div>
 
       <div class="process-col">
-        <img src="image/Arrow.png" style="height: 100px;">
-        </div>
+        <div class="arrow"></div>
+      </div>
 
       <div class="output-col">
         <div class="input-group">
